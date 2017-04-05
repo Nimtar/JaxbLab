@@ -1,9 +1,8 @@
 package ru.vsu.amm.jaxb_lab;
 
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+
 public class Student {
     private String name;
     private int age;
@@ -19,6 +18,12 @@ public class Student {
         this.year = year;
         this.faculty = faculty;
         this.studentID = studentID;
+    }
+
+    @Override
+    public String toString() {
+        return name + ", " + age + " years old, " + year
+                + " studying year. Faculty: " + faculty + ". StudentID: " + studentID;
     }
 
     private int studentID;
