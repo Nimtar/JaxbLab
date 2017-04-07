@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 @XmlRootElement
 public class Wrapper {
-    private ArrayList<Student> students;
+    private ArrayList<Student> students = new ArrayList<>();
 
     public ArrayList<Student> getStudents() {
         return students;
@@ -19,7 +19,9 @@ public class Wrapper {
     }
 
     public Wrapper delete(int index) {
-        this.students.remove(index);
+        if (!this.students.isEmpty()) {
+            this.students.remove(index);
+        }
         return this;
     }
 
@@ -29,14 +31,18 @@ public class Wrapper {
     }
 
     public Wrapper edit(int index, Student student) {
-        this.students.add(index, student);
+        if (this.students.isEmpty()) {
+            add(student);
+        } else {
+            this.students.set(index, student);
+        }
         return this;
     }
 
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
-        for (int i=0; i<students.size(); i++) {
+        for (int i = 0; i < students.size(); i++) {
             s.append(i).append(": ").append(students.get(i).toString()).append("\n");
         }
         return s.toString();

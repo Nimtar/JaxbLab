@@ -8,6 +8,7 @@ public class Student {
     private int age;
     private int year;
     private String faculty;
+    private int studentID;
 
     public Student() {
     }
@@ -25,8 +26,6 @@ public class Student {
         return name + ", " + age + " years old, " + year
                 + " studying year. Faculty: " + faculty + ". StudentID: " + studentID;
     }
-
-    private int studentID;
 
     public String getName() {
         return name;

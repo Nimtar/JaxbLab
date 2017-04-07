@@ -10,6 +10,16 @@ public class StudentsMarshaller {
     private Unmarshaller unmarshaller;
 
 
+    public StudentsMarshaller() {
+        try {
+            JAXBContext context = JAXBContext.newInstance(Wrapper.class);
+            this.setMarshaller(context.createMarshaller());
+            this.setUnmarshaller(context.createUnmarshaller());
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+    }
+
     public StudentsMarshaller setMarshaller(Marshaller marshaller) {
         this.marshaller = marshaller;
         try {
@@ -37,18 +47,9 @@ public class StudentsMarshaller {
         try {
             return (Wrapper) unmarshaller.unmarshal(new FileInputStream("/home/nimtar/JavaLab/resourse.xml"));
         } catch (JAXBException | FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Don't worry, but file is corrupted and will be cleared");
+            marshall(new Wrapper());
         }
         return null;
-    }
-
-    public StudentsMarshaller() {
-        try {
-            JAXBContext context = JAXBContext.newInstance(Wrapper.class);
-            this.setMarshaller(context.createMarshaller());
-            this.setUnmarshaller(context.createUnmarshaller());
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
     }
 }
